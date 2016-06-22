@@ -37,7 +37,8 @@ function dbmanager_textdomain() {
 
 
 ### Function: Database Manager Menu
-add_action('admin_menu', 'dbmanager_menu');
+$hook_prefix = is_multisite() ? 'network_' : '';
+add_action("${hook_prefix}admin_menu", 'dbmanager_menu');
 function dbmanager_menu() {
 	if (function_exists('add_menu_page')) {
 		add_menu_page(__('Database', 'wp-dbmanager'), __('Database', 'wp-dbmanager'), 'manage_database', 'wp-dbmanager/database-manager.php', '', 'dashicons-archive');
